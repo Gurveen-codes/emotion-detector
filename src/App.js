@@ -7,18 +7,21 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true)
 
 	function fetchData() {
-		fetch(process.env.REACT_APP_API_URL, {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-				'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-				'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
-			},
-			body: JSON.stringify({
-				source: imageLink,
-				sourceType: 'url',
-			}),
-		})
+		fetch(
+			'https://facial-emotion-recognition.p.rapidapi.com/cloudVision/facialEmotionRecognition',
+			{
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json',
+					'x-rapidapi-host': process.env.REACT_APP_API_HOST,
+					'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+				},
+				body: JSON.stringify({
+					source: imageLink,
+					sourceType: 'url',
+				}),
+			}
+		)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data)
